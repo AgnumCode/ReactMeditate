@@ -1,4 +1,5 @@
 import React from 'react'
+import '../App.css';
 
 class Timer extends React.Component {
 
@@ -6,22 +7,22 @@ class Timer extends React.Component {
         super(props)
         this.state = {
             //@currentTime - displayed time
-            currentTime: 10,
+            currentTime: 0,
             //@intervalID - countdown interval function name
             intervalID: '',
             //@defaultTime - fallback count - will be used when no values present
-            defaultTime: 10,
+            defaultTime: 0,
             //@topTime - calculating total meditation time from current time
             topTime: 20
         }
     }
 
-    countDownController = () => {
+    countUpTime = () => {
         if (!this.state.intervalID) {
             this.state.intervalID = setInterval(() => {
                 this.setState((prevState) => {
                     return {
-                        currentTime: prevState.currentTime - 1
+                        currentTime: prevState.currentTime + 1
                     }
                 })
             }, 1000);
@@ -38,32 +39,37 @@ class Timer extends React.Component {
         }
     }
 
+    endSession = () => {
+    }
+
     resetClock = () => {
         this.setState({
             currentTime: this.state.defaultTime,
             intervalID: ''
         });
-
         clearInterval(this.state.intervalID);
-
     }
 
     render() {
         return (
 
-            <div>
-                <div>
+            <div className="headerStyle">
+                <div className="timerReadout">
                     {this.state.currentTime}
                 </div>
-                <span>
-                    <button onClick={this.countDownController}>
+                <div className="startResetButtons" >
+                    <button className="btn btn-success" onClick={this.countUpTime}>
                         {this.state.intervalID ? "Pause" : "Start"}
                     </button>
                     {" "}
-                    <button onClick={this.resetClock}>
+                    <button className="btn btn-primary" onClick={this.resetClock}>
                         Reset Clock
                    </button>
-                </span>
+                   {" "}
+                   <button className="btn btn-warning" onClick={this.endSession}>
+                        End Session
+                   </button>
+                </div>
             </div>
         )
     }

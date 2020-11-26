@@ -1,0 +1,66 @@
+/* Button */
+/* .sessionCalcTotal {
+    margin: 10px;
+    text-align: center;
+    position: relative;
+}  */
+
+.timerReadout {
+    text-align: center;
+    font-size: 50px;
+    margin: 30px;
+}
+
+body {
+    margin:0;
+    padding:0;
+    height:100%;
+}
+
+.headerStyle, html{
+
+    background-color: #555 !important
+}
+
+
+.startResetButtons {
+    width: 100%;
+    text-align: center;
+}
+
+.sessionContainer {
+    position:relative;
+
+}
+
+.sessionList {
+    position:fixed;
+    bottom:0;
+    width: 30%;
+    margin: auto;
+
+}
+
+@media only screen and (max-width: 768px) {
+    .sessionList {
+        width: 100%;
+        border-right: 0px;
+        border-left: 0px;
+    }
+  }
+
+.sessionItem {
+    margin: 1px;
+    margin-left: 10px;
+    margin-right: 10px;
+    border-radius: 6px;
+    text-align: center;
+    border-color: #555;
+    border-style: solid;
+
+
+    background-color: #2a9fd6;
+    padding: 5px;
+    color: white;
+}
+

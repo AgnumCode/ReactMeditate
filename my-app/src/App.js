@@ -1,26 +1,20 @@
 import './App.css';
 import React from "react"
-import Timer from './Components/Timer'
-import Sessions from './Components/Sessions'
+import Timer from './Components/Timer.js'
+import Sessions from './Components/Sessions.js'
+import { SessionProvider } from "./Context/SessionContext.js"
 
-class App extends React.Component {
+const App = () => {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      
-    }
-  }
+  return (
+    <div>
+    <SessionProvider>
+      <Timer />
+      <Sessions />
+    </SessionProvider>
+    </div>
 
-  render() {
-    return (
-      <div>
-       <Timer/>
-       <Sessions/>
-
-      </div>
-    )
-  }
+  )
 }
 
 export default App

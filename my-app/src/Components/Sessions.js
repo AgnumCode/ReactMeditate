@@ -1,61 +1,38 @@
-import React from 'react'
+import { SessionContext } from '../Context/SessionContext.js'
+import React, { useContext } from 'react';
+import '../bootstrap.min.css'
 
-class Sessions extends React.Component {
+const Sessions = () => {
 
-    constructor(props) {
-        super(props);
-        this.state = {
+    const [session, setSession] = useContext(SessionContext);
 
-            meditationSessions: [{
-                id : 1,
-                meditationTimeMinutes : 30,
-                meditationTimeSeconds : 20,
-                dateMeditated: new Date().getUTCDate,
-                completed : false
-            },
-            {
-                id : 2,
-                meditationTimeMinutes : 25,
-                meditationTimeSeconds : 20,
-                dateMeditated: new Date().getUTCDate,
-                completed : true
-            },
-            {
-                id : 3,
-                meditationTimeMinutes : 15,
-                meditationTimeSeconds : 20,
-                dateMeditated: new Date().getUTCDate,
-                completed : true
-            }],
-            calculateMeditationMinutes : this.countTotalMeditationMinutes,
-            totalMinutes : null
-        }
-    }
+    return (
+        <div className="sessionContainer">  
+            {/* <button className="sessionCalcTotal" onClick={this.state.calculateMeditationMinutes}>
+            Count total minutes meditated {this.state.totalMinutes}
+            </button> */}
+                <div className="sessionList">
+                    {session.map((sessions) => {
+                        return (<div className="sessionItem" key={sessions.id}>
 
-    countTotalMeditationMinutes = () => {
-        let _totalMinutes = 0;
-        for (var item of this.state.meditationSessions) {
-            _totalMinutes += item.meditationTimeMinutes
-        }
-        this.setState(() => {
-            return {
-                totalMinutes : _totalMinutes
-            }
-        })
-    }
-
-    render() {
-
-        return (
-
-            <div>
-                <button onClick={this.state.calculateMeditationMinutes}>
-                   Count total minutes meditated
-                </button>
-                {" "}{this.state.totalMinutes}
+                            <div>Meditation Date - {sessions.dateMeditated}</div>
+                            <div>Time Goal - {sessions.timeGoal[2]} 
+                                             {sessions.timeGoal[2] === 1 ? " hour" : " hours"}, {" "}
+                                             {sessions.timeGoal[1]} 
+                                             {sessions.timeGoal[1] === 1 ? " minute" : " minutes"}</div>
+                            <div>Meditation Time - {sessions.meditationTime[2] === 0 ? "00" : sessions.meditationTime[2]}:
+                                                   {sessions.meditationTime[1] === 0 ? "00" : sessions.meditationTime[1]}:
+                                                   {sessions.meditationTime[0] === 0 ? "00" : sessions.meditationTime[0]}
+                             </div>
+                            <div>Completed - {sessions.completed}</div>
+                        </div>
+                        )
+                    })}
             </div>
-        )
-    }
+        </div>
+
+    )
+
 }
 
 export default Sessions
