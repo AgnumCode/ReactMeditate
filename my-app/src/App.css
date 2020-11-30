@@ -1,66 +1,102 @@
-/* Button */
-/* .sessionCalcTotal {
-    margin: 10px;
-    text-align: center;
-    position: relative;
-}  */
+
+.main {
+    background-color: #555;
+    width: 100%;
+    height: 100%;
+    
+}
+
 
 .timerReadout {
-    text-align: center;
     font-size: 50px;
-    margin: 30px;
-}
-
-body {
-    margin:0;
-    padding:0;
-    height:100%;
-}
-
-.headerStyle, html{
-
-    background-color: #555 !important
-}
-
-
-.startResetButtons {
-    width: 100%;
     text-align: center;
+    margin: 50px;
+}
+
+.navigationContainer {
+    width: 100%;
+    background-color: #2a9fd6;
+    border-color: black;
+    border-width: 1px;
+    position: fixed;
+    bottom: 0px;
+    height: 10vh;
+}
+
+ html{
+    background-color: #555;
+    overflow-y: hidden;
+
+}
+
+.timerContainer {
+    text-align: center;
+    background-color: #555;
+
+}
+
+
+.timerButtonContainer {
+    margin-bottom: 30px;
+}
+
+.timerBtn {
+    margin-left: 5px;
+    margin-bottom: 5px;
 }
 
 .sessionContainer {
-    position:relative;
-
-}
-
-.sessionList {
-    position:fixed;
-    bottom:0;
-    width: 30%;
+    background-color: #555;
+    overflow-y: scroll;
+    height: 45vh;
+    width: fit-content;
     margin: auto;
 
 }
 
-@media only screen and (max-width: 768px) {
-    .sessionList {
-        width: 100%;
-        border-right: 0px;
-        border-left: 0px;
+.sessionItem {
+    padding: 2vh;
+    border-radius: 6px;
+    border-color: #555;
+    border-style: solid;
+    background-color: #2a9fd6;
+    color: white;
+    width: 60vh;
+    text-align: center;
+ 
+
+}
+
+.disabledBtn:disabled {
+    cursor: not-allowed;
+}
+
+@media screen and (max-width: 700px) {
+    .sessionItem  {
+        width: 40vh;
     }
   }
 
-.sessionItem {
-    margin: 1px;
-    margin-left: 10px;
-    margin-right: 10px;
-    border-radius: 6px;
-    text-align: center;
-    border-color: #555;
-    border-style: solid;
 
+/*Custom scrollbar*/
 
-    background-color: #2a9fd6;
-    padding: 5px;
-    color: white;
-}
+  ::-webkit-scrollbar {
+    width: 15px;
+    height: 15px;
+    }
+    
+    ::-webkit-scrollbar-track {
+    border: 1px solid #2a9fd6;
+    border-radius: 15px;
+
+    }
+    
+    ::-webkit-scrollbar-thumb {
+    background: #2a9fd6;  
+    border-radius: 15px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+    background: #2a9fd6;  
+    }
 

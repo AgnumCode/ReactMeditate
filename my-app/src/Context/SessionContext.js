@@ -4,36 +4,30 @@ export const SessionContext = createContext(undefined);
 
 export const SessionProvider = ({children}) => {
 
-    //seconds, minutes, hours
-
-
     const [session, setSession] = useState([{
         id: 1,
-        meditationTime: [0, 15, 1],
-        timeGoal: [20, 30, 1],
+        meditationTime: "01:15:00",
         dateMeditated: "11/2/2020",
-        completed: "No"
+    },
+    {
+        id: 5,
+        meditationTime: "01:00:00",
+        dateMeditated: "11/3/2020",
     },
     {
         id: 2,
-        meditationTime: [0, 15, 1],
-        timeGoal: [20, 25, 0],
+        meditationTime: "00:15:00",
         dateMeditated: "11/3/2020",
-        completed: "Yes"
     },
     {
         id: 3,
-        meditationTime: [0, 30, 0],
-        timeGoal: [20, 15, 0],
+        meditationTime: "00:30:20",
         dateMeditated: "11/5/2020",
-        completed: "Yes"
     },
     {
         id: 4,
-        meditationTime: [0, 15, 0],
-        timeGoal: [20, 15, 0],
+        meditationTime: "00:10:00",
         dateMeditated: "11/30/2020",
-        completed: "Yes"
     }])
 
     return (
