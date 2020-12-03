@@ -16,7 +16,7 @@ const Timer = () => {
             const id = setInterval(() => {
                 setCurrentTime(currentTime => currentTime + 1);
                 setTimerFormat(new Date(currentTime * 1000).toISOString().substr(11, 8))
-            }, 1);
+            }, currentTime === 0 ? 1 : 1000);
             return () => {
                 clearInterval(id);
             }
@@ -44,7 +44,7 @@ const Timer = () => {
     return (
 
         <div className="timerContainer">
-            <div className="timerReadout">
+            <div id="circle" className="timerReadout">
                 {timerFormat ? timerFormat : "00:00:00" }
             </div>
             <div className="timerButtonContainer" >
