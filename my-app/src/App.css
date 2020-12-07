@@ -8,13 +8,12 @@
     background-color: #555;
     overflow-x: hidden;
     overflow-y: hidden;
-    clear: both;
 }
 .timerReadout {
-    font-size: 50px;
+    font-size: 40px;
     text-align: center;
     margin: auto;
-    padding-top: 115px;
+    padding-top: 9vh;
 }
 
 .navigationContainer {
@@ -23,12 +22,9 @@
     border-color:  #2a9fd6;
     border-width: 5px;
     border-style: solid;
-    border-radius: 10px;
-    border-bottom-left-radius: 0px;
-    border-bottom-right-radius: 0;
     position: fixed;
     bottom: 0px;
-    height: 5vh;
+    height: 10vh;
 }
 
  html{
@@ -38,6 +34,26 @@
     scroll-behavior: smooth;
 }
 
+.signUpContainer {
+    margin: 5px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+#spaceBottom {
+    margin-bottom: 5px;
+}
+
+
+.genericCenter {
+    opacity: 1;
+    margin: auto;
+    margin-top: 20vh;
+    font-size: 20px;
+    text-align: center;
+}
+
 .timerContainer {
     text-align: center;
     background-color: #555;
@@ -45,10 +61,10 @@
 }
 
 #circle {
-    width: 300px;
-    height: 300px;
-    margin-bottom: 20px;
-    margin-top: 20px;
+    width: 200px;
+    height: 200px;
+    margin-bottom: 10px;
+    margin-top: 10px;
     shape-outside: circle();
     clip-path: circle();
     background: #222;
@@ -67,20 +83,23 @@
 .sessionContainer {
     background-color: #555;
     overflow-y: scroll;
-    height: 35vh;
-    width: max-content;
+    height: 55vh;
+    width: min-content;
     margin: auto;
+    padding: 5px;
 
 }
 
 .sessionContainerEmpty {
     margin: auto;
     width: max-content;
+    height: 60vh;
 }
 
 .showEmptySessionText {
     opacity: 1;
-    margin: auto;
+    display: flex;
+    justify-content: center;
     margin-top: 20vh;
     font-size: 20px;
     text-align: center;
@@ -88,32 +107,40 @@
 
 .hideEmptySessionText {
     opacity: 0;
+    font-size: 0px;
 }
 
-@media screen and (min-width: 600px) {
-    .sessionItem  {
-        overscroll-behavior: none;
+nav > span {
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: row;
+}
 
-    }
-    .sessionContainer {
-        overscroll-behavior: none;
+nav > span > a {
+    color: white;
+    text-decoration: none;
+    transform: translateY(100%);
+}
 
-    }
-  }
+nav > span > a:active {
+    color: white;
+    text-decoration: none;
+}
+
+.signUpForm {
+    padding: 10px;
+}
 
 .sessionItem {
     padding: 2vh;
-    border-radius: 6px;
     border-color: #555;
     border-style: solid;
     background-color: #2a9fd6;
     color: white;
-    width: 40vh;
-    height: 11vh;
+    width: 100vh;
+    height: fit-content;
     text-align: center;
-    margin: 5px;
- 
-
 }
 
 .disabledBtn:disabled {
@@ -142,3 +169,71 @@
     background: #2a9fd6;  
     }
 
+    @media screen and (min-width: 600px) {
+
+        nav > span {
+            position: relative;
+            display: flex;
+            justify-content: space-around;
+            flex-direction: column;
+        }
+        
+    
+        nav > span > a {
+            color: white;
+            padding: 20px;
+        }
+    
+        nav > span > a:hover {
+            text-decoration: none;
+            color: #222
+        } 
+        .sessionItem  {
+            overscroll-behavior: none;
+    
+        }
+        .sessionContainer {
+            height: 40vh;
+        }
+    
+        .timerReadout {
+            font-size: 50px;
+            text-align: center;
+            margin: auto;
+            padding-top: 13vh;
+        }
+    
+        #circle {
+            width: 230px;
+            height: 230px;
+            margin-bottom: 10px;
+            margin-top: 5px;
+            shape-outside: circle();
+            clip-path: circle();
+            background: #222;
+        }
+        
+    
+        .navigationContainer {
+            background-color: #2a9fd6;
+            border-color:  #2a9fd6;
+            border-width: 5px;
+            border-style: solid;
+            font-size: 20px;
+            bottom: 0px;
+            height: 100%;
+            width: 25vh;
+        }
+    
+        .sessionItem {
+            padding: 2vh;
+            border-color: #555;
+            border-style: solid;
+            background-color: #2a9fd6;
+            color: white;
+            height: fit-content;
+            text-align: center;
+        }
+        
+      }
+    

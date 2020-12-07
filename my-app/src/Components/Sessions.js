@@ -10,7 +10,7 @@ const Sessions = () => {
 
     useLayoutEffect(() => {
     //if length of sessions will approach value where a scrollbar is unnecessary, change style
-    (sessionLength - 1 <= 2) ? setSessionContainerStyle('sessionContainerEmpty') :
+    (sessionLength - 1 <= 1) ? setSessionContainerStyle('sessionContainerEmpty') :
                                setSessionContainerStyle('sessionContainer')
     
         setSessionLength(session.length)
