@@ -5,7 +5,7 @@ import '../App.css';
 
 const Home = () => {
     return (
-        <div className="genericCenter">
+        <div className="welcomePage">
             Welcome to React Meditate!
         </div>
     )

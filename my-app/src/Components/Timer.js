@@ -59,41 +59,35 @@ const Timer = () => {
 
   return (
     <div className="timerContainer">
-      <Container>
-        <Row>
-          <div id="circle" className="timerReadout">
-            <div>{timerFormat ? timerFormat : "00:00:00"}</div>
+      <div className="timerContainerBackground">
+        <div id="circle">
+          <div className="timerText">
+            {timerFormat ? timerFormat : "00:00:00"}
           </div>
-        </Row>
-        <Row>
-            <Col xs/>
-            <Col xs="auto" sm="auto" lg="auto"> 
-          <div className="timerButtonContainer">
-            <button
-              className="timerBtn btn btn-success"
-              onClick={() => setTimerRunning(!timerRunning)}
-            >
-              {timerRunning ? "Pause" : "Start"}
-            </button>
-            <button
-              className="timerBtn disabledBtn btn btn-primary"
-              disabled={currentTime === 0}
-              onClick={() => resetTimer(defaultTime)}
-            >
-              Reset Clock
-            </button>
-            <button
-              className="timerBtn disabledBtn btn btn-warning"
-              disabled={currentTime === 0}
-              onClick={() => saveSession(currentTime)}
-            >
-              Save Session
-            </button>
-          </div>
-          </Col>
-          <Col xs/>
-        </Row>
-      </Container>
+        </div>
+        <div className="timerButtonContainer">
+          <button
+            className="timerBtn btn btn-success"
+            onClick={() => setTimerRunning(!timerRunning)}
+          >
+            {timerRunning ? "Pause" : "Start"}
+          </button>
+          <button
+            className="timerBtn disabledBtn btn btn-primary"
+            disabled={currentTime === 0}
+            onClick={() => resetTimer(defaultTime)}
+          >
+            Reset Clock
+          </button>
+          <button
+            className="timerBtn disabledBtn btn btn-warning"
+            disabled={currentTime === 0}
+            onClick={() => saveSession(currentTime)}
+          >
+            Save Session
+          </button>
+        </div>
+      </div>
     </div>
   );
 };

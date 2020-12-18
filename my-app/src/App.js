@@ -14,43 +14,54 @@ import {
 import { Container, Row, Col } from "react-bootstrap";
 import Fade from "react-bootstrap/Fade";
 
-
 const App = () => {
   return (
     <div className="app">
       <SessionProvider>
         <Router>
           <Container fluid>
-            <Timer />
+            <Row>
+              <Col className="nomargins" xs={12} sm={12} md={12} lg={12} >
+                <Timer />
+              </Col>
+            </Row>
             <Switch>
-              <Route path="/Home">
-                <Home />
+              <Route exact path="/">
+                <Row>
+                  <Col xs={12} sm={12} md={12} lg={12}>
+                    <Home />
+                  </Col>
+                </Row>
               </Route>
               <Route path="/SignUp">
-                <SignUp />
+                <Row>
+                  <Col>
+                    <SignUp />
+                  </Col>
+                </Row>
               </Route>
               <Route path="/Sessions">
                 <Row>
-                  <Col/>
-                  <Col lg={8} sm={8} md={8} xs={8} >
+                  <Col />
+                  <Col xs={12} sm={10} md={10} lg={8}>
                     <Sessions />
                   </Col>
                   <Col />
                 </Row>
               </Route>
             </Switch>
-            <nav>
-              <NavLink activeStyle={{ color: "#222" }} to="/Home">
-                Home
-              </NavLink>
-              <NavLink activeStyle={{ color: "#222" }} to="/Signup">
-                Sign Up
-              </NavLink>
-              <NavLink activeStyle={{ color: "#222" }} to="/Sessions">
-                Sessions
-              </NavLink>
-            </nav>
           </Container>
+          <nav className="navigationMenu">
+                  <NavLink activeStyle={{ color: "black" }} to="/">
+                    Home
+                  </NavLink>
+                  <NavLink activeStyle={{ color: "black" }} to="/Signup">
+                    Sign Up
+                  </NavLink>
+                  <NavLink activeStyle={{ color: "black" }} to="/Sessions">
+                    Sessions
+                  </NavLink>
+                </nav>
         </Router>
       </SessionProvider>
     </div>

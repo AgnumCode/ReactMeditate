@@ -1,8 +1,10 @@
 import { SessionContext } from "../Context/SessionContext.js";
-import React, { useContext, useLayoutEffect, useState } from "react";
+import React, { useRef, useContext, useLayoutEffect, useState } from "react";
 import "../bootstrap.min.css";
 
 const Sessions = () => {
+
+  const sessionContainerRef = useRef(null);
   const [session, setSession] = useContext(SessionContext);
   const [sessionLength, setSessionLength] = useState(session.length);
   const [sessionContainerStyle, setSessionContainerStyle] = useState(
@@ -27,7 +29,7 @@ const Sessions = () => {
   };
 
   return (
-    <div className={sessionContainerStyle}>
+    <div ref={sessionContainerRef} className={sessionContainerStyle}>
       <div
         className={
           sessionLength === 0 ? "showEmptySessionText" : "hideEmptySessionText"
@@ -54,6 +56,8 @@ const Sessions = () => {
             </div>
             <div className="toast-body">
               Session duration - {sessions.meditationTime}
+              <br/>
+              Completed Session - {sessions.completed }
             </div>
           </div>
         );
