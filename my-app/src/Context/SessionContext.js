@@ -8,31 +8,31 @@ export const SessionProvider = ({children}) => {
         id: 1,
         meditationTime: "01:15:00",
         dateMeditated: "11/2/2020",
-        completed: false,
+        completed: "No",
     },
     {
         id: 5,
         meditationTime: "01:00:00",
         dateMeditated: "11/3/2020",
-        completed: true,
+        completed: "Yes",
     },
     {
         id: 2,
         meditationTime: "00:15:00",
         dateMeditated: "11/3/2020",
-        completed: false,
+        completed: "No",
     },
     {
         id: 3,
         meditationTime: "00:30:20",
         dateMeditated: "11/5/2020",
-        completed: true,
+        completed: "Yes",
     },
     {
         id: 4,
         meditationTime: "00:10:00",
         dateMeditated: "11/30/2020",
-        completed: true,
+        completed: "Yes",
     }])
 
     return (

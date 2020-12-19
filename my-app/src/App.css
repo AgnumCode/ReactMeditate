@@ -3,23 +3,38 @@
 }
 
 @keyframes slide {
-  from { background-position: 0 0; }
-  to { background-position: -400px -400px; }
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: -400px -400px;
+  }
 }
-
-.timerContainerBackground { 
-  background-image: url("../src/Static/images/darkbubble.webp");
-  animation: slide 50s linear infinite;
-  padding: 10px;
-  padding-bottom: 20px;
-
-}
-
 
 .welcomePage {
   font-size: 25px;
   text-align: center;
   margin: 50px;
+  height: max-content;
+}
+
+
+.signInUpButton {
+  line-height: 9px !important;
+  vertical-align: top !important;
+}
+
+.logOutButton {
+  line-height: 9px !important;
+  vertical-align: top !important;
+}
+
+.loginControllerContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: 50px;
+  text-align: center;
 }
 
 .sessionItem:last-child {
@@ -41,7 +56,6 @@
   -webkit-box-shadow: 0px 0px 33px 1px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 0px 0px 33px 1px rgba(0, 0, 0, 0.75);
   box-shadow: 0px 0px 33px 1px rgba(0, 0, 0, 0.75);
-
 }
 
 .timerText {
@@ -60,31 +74,21 @@
 }
 
 .navigationMenu {
-  bottom: 0px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
   width: 100%;
+  top: 0px;
   position: sticky;
-  background: #2a9fd6;
-  padding: 1vh;
-  border-style: solid;
-  border-color: #555;
-  border-width: 0.5px;
-  font-size: 25px;
-  text-align: center;
-}
-
-.navigationMenu > a {
-  margin-left: 20px;
-  color: white;
+  background: #060606;
+  padding: 2vh;
+  z-index: 10;
+  font-size: 16px;
 }
 
 .col-12.nomargins {
   padding-left: 0px !important;
   padding-right: 0px !important;
-}
-
-.navigationMenu > a:hover {
-  color: black;
-  background: #6ac5f7;
 }
 
 .sessionItem {
@@ -117,8 +121,6 @@
 html {
   background-color: #555;
   scroll-behavior: smooth;
-  overflow-x: hidden;
-  
 }
 .hideEmptySessionText {
   opacity: 0;
@@ -129,10 +131,8 @@ html {
 
 .showEmptySessionText {
   opacity: 1;
-  display: flex;
   justify-content: center;
-  margin-top: 20vh;
-  font-size: 20px;
+  font-size: 30px;
   text-align: center;
 }
 
@@ -145,173 +145,18 @@ html {
   padding-top: 10px;
 }
 
-/*Custom scrollbar*/
+.timerContainerBackground {
+  background-image: url("../src/Static/images/darkbubble.webp");
+  animation: slide 50s linear infinite;
+  padding: 10px;
+  padding-bottom: 20px;
+}
+
+.sessionContainerEmpty {
+  margin: 5px;
+  padding-top: 10px;
+}
 
 .timerBtn {
   margin-left: 5px;
 }
-
-/* 
-
-
-
-
-.main {
-    background-color: #555;
-    overflow-x: hidden;
-    overflow-y: hidden;
-}
-.timerReadout {
-    font-size: 40px;
-    text-align: center;
-    margin: auto;
-    padding-top: 9vh;
-}
-
-
-
-
-
-
-#spaceBottom {
-    margin-bottom: 5px;
-}
-
-
-.genericCenter {
-    opacity: 1;
-    margin: auto;
-    margin-top: 20vh;
-    font-size: 20px;
-    text-align: center;
-}
-
-.timerContainer {
-    text-align: center;
-    background-color: #555;
-
-}
-
-
-.timerButtonContainer {
-    margin-bottom: 10px;
-}
-
-.timerBtn {
-    margin-left: 7px;
-    margin-bottom: 5px;
-}
-
-.sessionContainer {
-
-
-}
-
-.sessionContainerEmpty {
-    margin: auto;
-    width: max-content;
-    height: 60vh;
-}
-
-
-
-
-
-
-
-nav > span > a {
-    color: white;
-    text-decoration: none;
-    transform: translateY(50%);
-    text-align: center;
-}
-
-
-
-.signUpForm {
-    padding: 10px;
-}
-
-.sessionItem {
-    padding: 2vh;
-    border-color: #555;
-    border-style: solid;
-    background-color: #2a9fd6;
-    color: white;
-    width: 100vh;
-    height: fit-content;
-    text-align: center;
-}
-
-
-
-
-
-    @media screen and (min-width: 600px) {
-
-        nav > span {
-            position: relative;
-            display: flex;
-            justify-content: space-around;
-            flex-direction: column;
-        }
-        
-    
-        nav > span > a {
-            color: white;
-            padding: 20px;
-        }
-    
-        nav > span > a:hover {
-            text-decoration: none;
-            color: #222
-        } 
-        .sessionItem  {
-            overscroll-behavior: none;
-    
-        }
-        .sessionContainer {
-            height: 40vh;
-        }
-    
-        .timerReadout {
-            font-size: 50px;
-            text-align: center;
-            margin: auto;
-            padding-top: 13vh;
-        }
-    
-        #circle {
-            width: 230px;
-            height: 230px;
-            margin-bottom: 10px;
-            margin-top: 5px;
-            shape-outside: circle();
-            clip-path: circle();
-            background: #222;
-        }
-        
-    
-        .navigationContainer {
-            background-color: #2a9fd6;
-            border-color:  #2a9fd6;
-            border-width: 5px;
-            border-style: solid;
-            font-size: 20px;
-            bottom: 0px;
-            height: 100%;
-            width: 25vh;
-        }
-    
-        .sessionItem {
-            padding: 2vh;
-            border-color: #555;
-            border-style: solid;
-            background-color: #2a9fd6;
-            color: white;
-            height: fit-content;
-            text-align: center;
-        }
-        
-      }
-     */

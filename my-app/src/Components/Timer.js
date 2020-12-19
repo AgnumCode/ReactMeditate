@@ -39,6 +39,7 @@ const Timer = () => {
   const saveSession = (timeInSeconds) => {
     setTimerRunning(false);
     setCurrentTime(0);
+    setTimerFormat(null);
     const date = new Date();
     setSession([
       {
