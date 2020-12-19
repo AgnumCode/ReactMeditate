@@ -21,7 +21,7 @@ const Navigation = () => {
             }
             className="logOutButton btn btn-info"
           >
-            (Logged In) Log Out
+           (Log out) {user.username}
           </button>
         ) : (
           <div className="signInUpButton btn btn-success">

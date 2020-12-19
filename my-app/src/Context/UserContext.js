@@ -1,12 +1,13 @@
 import React, { createContext, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 
+export const UserContext = createContext(undefined);
 export const UserProvider = ({ children }) => {
+  
   const [user, setUserInfo] = useState({
-    isLoggedIn: true,
-    theme: "default",
-    id: null,
-    totalMeditationMinutes: null,
+    username: null,
+    isLoggedIn: false,
+    theme: "default"
   });
 
   return (
@@ -15,5 +16,3 @@ export const UserProvider = ({ children }) => {
     </UserContext.Provider>
   );
 };
-
-export const UserContext = createContext(undefined);

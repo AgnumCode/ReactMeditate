@@ -2,13 +2,13 @@ import React, { useState, useEffect, useContext } from "react";
 import { SessionContext } from "../Context/SessionContext.js";
 import "../App.css";
 
-const SignUp = () => {
+const CreateAccount = () => {
   
   const [showPassword, setShowPassword] = useState(false);
 
   return (
-    <div className="signUpContainer">
-      <form className="signUpForm">
+    <div className="createAccountContainer">
+      <form className="createAccountForm">
         <input name="username" type="text" placeholder="Username" />
         <input
           name="password"
@@ -39,4 +39,4 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+export default CreateAccount;

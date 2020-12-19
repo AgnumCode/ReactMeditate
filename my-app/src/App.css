@@ -18,6 +18,13 @@
   height: max-content;
 }
 
+.signInContainer {
+
+  text-align: center;
+  padding: 70px;
+
+}
+
 
 .signInUpButton {
   line-height: 9px !important;
