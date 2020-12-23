@@ -1,14 +1,17 @@
-import React, { useState, useEffect, useContext } from 'react'
-import { SessionContext } from '../Context/SessionContext.js'
-import '../App.css';
-
+import React, { useState, useEffect, useContext } from "react";
+import { UserContext } from "../Context/UserContext.js";
+import "./css/Home.css";
 
 const Home = () => {
-    return (
-        <div className="welcomePage">
-            Welcome to React Meditate!
-        </div>
-    )
-}
+  const [user, setUserInfo] = useContext(UserContext);
 
-export default Home
+  return (
+    <div className="welcomePage">
+      {user.isLoggedIn
+        ? `Hello, ${user.username}`
+        : "Welcome to React Meditate!"}
+    </div>
+  );
+};
+
+export default Home;

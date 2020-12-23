@@ -1,6 +1,7 @@
 import React, { useContext, useEffect } from "react";
 import { UserContext } from "../Context/UserContext.js";
 import { NavLink } from "react-router-dom";
+import "./css/Navigation.css"
 
 const Navigation = () => {
   const [user, setUserInfo] = useContext(UserContext);

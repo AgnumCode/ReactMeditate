@@ -1,8 +1,7 @@
-import React, { useState, useContext } from "react";
-import { Form } from "react-bootstrap";
+import React, { useState, useContext, useRef, useEffect } from "react";
 import { DataContext } from "../Context/DataContext.js";
 import { UserContext } from "../Context/UserContext.js";
-import "../App.css";
+import "./css/SignIn.css";
 
 const SignIn = () => {
   const initialFormData = Object.freeze({
@@ -10,11 +9,18 @@ const SignIn = () => {
     password: "",
   });
 
+  const signInContainerScrollIntoRef = useRef(undefined);
   const [showPassword, setShowPassword] = useState(false);
   const [formData, updateFormData] = useState(initialFormData);
   const [userList, setUserList] = useContext(DataContext);
   const [user, setUserInfo] = useContext(UserContext);
   const [error, setError] = useState(false);
+
+  useEffect(() => {
+    if (signInContainerScrollIntoRef !== null) {
+      signInContainerScrollIntoRef.current.scrollIntoView();
+    }
+  }, [signInContainerScrollIntoRef]);
 
   const handleChange = (e) => {
     updateFormData({
@@ -26,6 +32,7 @@ const SignIn = () => {
   };
 
   const handleSubmit = (e) => {
+
     e.preventDefault();
 
     let retrievedUser = userList.find(
@@ -34,40 +41,45 @@ const SignIn = () => {
         element.password === formData.password
     );
 
-    if (retrievedUser !== undefined) {
+    if (retrievedUser) {
       setUserInfo({
         isLoggedIn: true,
         username: retrievedUser.username,
+        session: retrievedUser.sessions,
       });
 
-      console.log(user);
     } else {
       setError(true);
     }
-
-    // username: null,
-    // isLoggedIn: false,
-    // theme: "default"
   };
 
   return (
     <div>
-      <div className="signInContainer">
-        {error ? <div>User credentials not recognized.</div> : ""}
-        <Form>
+      <div ref={signInContainerScrollIntoRef} className="signInContainer">
+        {error ? (
+          <div className="text-danger mb-2">
+            User credentials not recognized.
+          </div>
+        ) : (
+          ""
+        )}
+        <form className="signInForm">
+          <div className="form-group">
           <input
+            className="signInUsernameField"
             name="username"
             onChange={handleChange}
             type="text"
             placeholder="Username"
           />
           <input
+            className="signInPasswordField"
             name="password"
             type={showPassword ? "text" : "password"}
             placeholder="Password"
             onChange={handleChange}
           />
-          <div>
+          <div className="showPasswordCheckbox">
             {" "}
             Show Password{" "}
             <input
@@ -78,8 +90,9 @@ const SignIn = () => {
               }}
             />{" "}
           </div>
-          <button onClick={handleSubmit}>Log In</button>
-        </Form>
+          <button className="btn btn-lg btn-primary" onClick={handleSubmit}>Log In</button>
+          </div>
+        </form>
       </div>
     </div>
   );

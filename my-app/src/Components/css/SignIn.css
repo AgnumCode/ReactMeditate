@@ -1,0 +1,43 @@
+.signInContainer {
+    text-align: center;
+    padding: 70px;
+    margin: 0 0 auto;
+  
+  }
+  /* :TODO: */
+  .signInForm {
+    padding: 20px;
+    background: grey;
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 1px;
+    -webkit-box-shadow: 0px 0px 33px 1px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 0px 0px 33px 1px rgba(0, 0, 0, 0.75);
+    box-shadow: 0px 0px 33px 1px rgba(0, 0, 0, 0.75);
+  }
+  
+  .signInUpButton {
+    line-height: 9px !important;
+    vertical-align: top !important;
+  }
+
+  .signInPasswordField {
+
+    margin: 10px;
+    text-align: center;
+
+  }
+
+  .signInUsernameField {
+
+    margin: 10px;
+    text-align: center;
+    
+  }
+
+  .showPasswordCheckbox {
+
+    margin: 15px;
+    color: whitesmoke;
+    padding: 5px;
+  }
