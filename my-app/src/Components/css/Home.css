@@ -1,7 +1,6 @@
-.welcomePage {
+.homePageContainer {
     font-size: 25px;
     text-align: center;
-    margin: 50px;
     padding: 50px;
     height: max-content;
   }

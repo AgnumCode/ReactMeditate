@@ -1,8 +1,6 @@
 import "./App.css";
 import React, { useEffect, useContext } from "react";
-import { UserProvider } from "./Context/UserContext.js";
 import { DataProvider } from "./Context/DataContext.js";
-import { UserContext } from "./Context/UserContext.js"
 import Navigation from "./Components/Navigation.js";
 import Sessions from "./Components/Sessions.js";
 import Home from "./Components/Home.js";
@@ -24,7 +22,6 @@ const App = () => {
   return (
     <>
       <DataProvider>
-        <UserProvider>
           <Router>
             <Navigation />
             <Container fluid>
@@ -36,14 +33,14 @@ const App = () => {
               <Switch>
                 <Route exact path="/Home">
                   <Row>
-                    <Col xs={12} sm={12} md={12} lg={12}>
+                    <Col className="nomargins" xs={12} sm={12} md={12} lg={12}>
                       <Home />
                     </Col>
                   </Row>
                 </Route>
                 <Route exact path="/Login">
                   <Row>
-                    <Col>
+                    <Col className="nomargins" xs={12} sm={12} md={12} lg={12}>
                     <SignIn/>
                     </Col>
                   </Row>
@@ -57,17 +54,16 @@ const App = () => {
                 </Route>
                 <Route exact path="/Sessions">
                   <Row>
-                    <Col />
-                    <Col xs={12} sm={0} md={10} lg={8}>
+                    <Col>
+                    <Col xs={12} sm={12} md={12} lg={12}>
                       <Sessions />
                     </Col>
-                    <Col />
+                    </Col>
                   </Row>
                 </Route>
               </Switch>
             </Container>
           </Router>
-        </UserProvider>
       </DataProvider>
     </>
   );

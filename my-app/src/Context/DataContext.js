@@ -3,11 +3,12 @@ import { v4 as uuidv4 } from "uuid";
 
 export const DataContext = createContext(undefined);
 export const DataProvider = ({ children }) => {
-  const [userList, setUserList] = useState([
+  const [user, setUser] = useState(
     {
+      isLoggedIn: false,
       username: "admin",
       password: "admin",
-      id: 1928873,
+      userID: 1928873,
       sessions: [
         {
           id: 1,
@@ -28,28 +29,11 @@ export const DataProvider = ({ children }) => {
           completed: "No",
         }
       ],
-    },
-    {
-      username: "jerry",
-      password: "jay123",
-      id: 1238317,
-      sessions: [{
-        id: 3,
-        meditationTime: "00:30:20",
-        dateMeditated: "11/5/2020",
-        completed: "Yes",
-    },
-    {
-        id: 4,
-        meditationTime: "00:10:00",
-        dateMeditated: "11/30/2020",
-        completed: "Yes",
-    }]
     }
-  ]);
+  );
 
   return (
-    <DataContext.Provider value={[userList, setUserList]}>
+    <DataContext.Provider value={[user, setUser]}>
       {children}
     </DataContext.Provider>
   );

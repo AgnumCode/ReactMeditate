@@ -12,9 +12,22 @@
     font-size: 16px;
   }
 
-  
+.navItem {
+  padding: 10px;
+}
+
+.navItem:hover {
+  border-bottom: 1px solid white;
+  text-decoration: none !important;
+}
+
 .logOutButton {
-    line-height: 9px !important;
-    vertical-align: top !important;
+    /* line-height: 0px !important;
+    vertical-align: middle !important; */
+  }
+
+  .signInUpButton {
+    /* line-height: 5px !important;
+    vertical-align: text-bottom !important; */
   }
   

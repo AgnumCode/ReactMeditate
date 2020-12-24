@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useContext } from "react";
-import { UserContext } from "../Context/UserContext.js";
+import { DataContext } from "../Context/DataContext.js";
 import "./css/Timer.css";
 
 const Timer = () => {
   // eslint-disable-next-line
   const [defaultTime, setDefaultTime] = useState(0);
-  const [user, setUserInfo] = useContext(UserContext);
+  const [user, setUser] = useContext(DataContext);
   const [timerRunning, setTimerRunning] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [timerFormat, setTimerFormat] = useState(
@@ -41,9 +41,9 @@ const Timer = () => {
     setCurrentTime(0);
     setTimerFormat(null);
     const date = new Date();
-    setUserInfo({ 
+    setUser({ 
       ...user,
-      session: [{
+      sessions: [{
         id: new Date().getUTCMilliseconds(),
         meditationTime: new Date(timeInSeconds * 1000 - 1)
           .toISOString()
@@ -54,7 +54,7 @@ const Timer = () => {
           date.getUTCDate() +
           "/" +
           date.getFullYear(),
-      }, ...user.session]
+      }, ...user.sessions]
     });
   };
 

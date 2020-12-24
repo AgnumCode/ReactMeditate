@@ -1,26 +1,24 @@
-import { UserContext } from "../Context/UserContext.js";
 import "./css/Sessions.css";
 import "../bootstrap.min.css";
 import React, {
   useRef,
   useContext,
-  useLayoutEffect,
   useState,
   useEffect,
 } from "react";
+import { DataContext } from "../Context/DataContext.js";
 
 const Sessions = () => {
   const sessionContainerScrollIntoRef = useRef(undefined);
-  const [user, setUserInfo] = useContext(UserContext);
-  const [session, setSession] = useState([user.session][0]);
+  const [user, setUser] = useContext(DataContext);
+  const [session, setSession] = useState([user.session]);
   const [sessionLength, setSessionLength] = useState(session.length);
   const [sessionContainerStyle, setSessionContainerStyle] = useState(
     "sessionContainer"
   );
 
   useEffect(() => {
-    console.log(session);
-    if (sessionContainerScrollIntoRef !== null) {
+      if (sessionContainerScrollIntoRef !== null) {
       sessionContainerScrollIntoRef.current.scrollIntoView();
     }
   }, [sessionContainerScrollIntoRef]);
@@ -37,9 +35,9 @@ const Sessions = () => {
   //delete an item from the session list
   const deleteSessionItem = (key) => {
     /* future :: add prompt box here to confirm */
-    setUserInfo({
+    setUser({
       ...user,
-      session: user.session.filter((element) => element.id !== key),
+      sessions: user.sessions.filter((element) => element.id !== key),
     });
   };
 
@@ -49,14 +47,14 @@ const Sessions = () => {
         <div>
           <div
             className={
-              user.session.length === 0
+              user.sessions.length === 0
                 ? "showEmptySessionText"
                 : "hideEmptySessionText"
             }
           >
             No sessions recorded!
           </div>
-          {user.session.map((sessions) => {
+          {user.sessions.map((sessions) => {
             return (
               <div key={sessions.id} className="sessionItem">
                 <button
