@@ -15,7 +15,7 @@ const Home = () => {
   return (
     <div ref={homePageContainerScrollIntoRef} className="homePageContainer">
       {user.isLoggedIn ? (
-        `Hello, ${user[0].username}.`
+        `Hello, ${user.username}.`
       ) : (
         <div>
           <div>Welcome to React Meditate!</div>

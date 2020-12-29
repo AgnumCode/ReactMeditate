@@ -1,33 +1,51 @@
-
 .navigationMenu {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    width: 100%;
-    top: 0px;
-    position: sticky;
-    background: #060606;
-    padding: 2vh;
-    z-index: 10;
-    font-size: 16px;
-  }
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  width: 100%;
+  background: #060606;
+  position: fixed;
+  padding: 2vh;
+  transition: ease-in-out 0.3s;
+  z-index: 10;
+  font-size: 16px;
+  border-bottom: 2px solid #555;
+}
+
+.navigationMenu:hover {
+  border-bottom: 2px solid grey;
+  transition: ease-in .3s;
+}
+
+a:hover, a:visited, a:link, a:active
+{
+    text-decoration: none !important
+}
+
 
 .navItem {
   padding: 10px;
 }
 
-.navItem:hover {
-  border-bottom: 1px solid white;
-  text-decoration: none !important;
+.logOutButton {
+  margin-top: 5px;
 }
 
-.logOutButton {
-    /* line-height: 0px !important;
-    vertical-align: middle !important; */
-  }
+.signInUpButton {
+  margin-top: 5px;
+}
 
-  .signInUpButton {
-    /* line-height: 5px !important;
-    vertical-align: text-bottom !important; */
-  }
-  
+.navItem:link {
+  color: #fff;
+  font-size: 1rem;
+  line-height: 1.6rem;
+}
+.navItem:visited {
+  color: #555
+}
+.navItem:hover {
+  color: white
+}
+.navItem:active {
+  color: lightgreen;
+}

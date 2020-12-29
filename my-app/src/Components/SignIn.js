@@ -3,23 +3,22 @@ import { DataContext } from "../Context/DataContext.js";
 import { useHistory } from "react-router";
 import "./css/SignIn.css";
 
-const SignIn = () => {
+const SignIn = ({ props }) => {
   const initialFormData = Object.freeze({
     username: "",
     password: "",
   });
 
-  const signInContainerScrollIntoRef = useRef(undefined);
+  const signInContainerScrollIntoRef = useRef(null);
+  const signInErrorRef = useRef(null);
   const [showPassword, setShowPassword] = useState(false);
   const [formData, updateFormData] = useState(initialFormData);
-  const [user, setUser] = useContext(DataContext  );
+  const [user, setUser] = useContext(DataContext);
   const [error, setError] = useState(false);
-
-  let history = useHistory();
+  const history = useHistory();
 
   useEffect(() => {
-
-    if (signInContainerScrollIntoRef !== null) {
+    if (signInContainerScrollIntoRef) {
       signInContainerScrollIntoRef.current.scrollIntoView();
     }
   }, [signInContainerScrollIntoRef]);
@@ -52,9 +51,16 @@ const SignIn = () => {
 
   return (
     <div>
-      <div ref={signInContainerScrollIntoRef} className="signInContainer">
-        <form className="signInForm pb-3">
-          <div>
+      <div
+        className="signInContainer"
+        ref={signInContainerScrollIntoRef}
+      >
+        <form className="signInForm">
+          <div className="formBorder">
+            <div className="formHeader">Sign In</div>
+            {error && (
+              <div ref={signInErrorRef} className="error">User credentials not recognized.</div>
+            )}
             <input
               className="signInUsernameField"
               name="username"
@@ -62,6 +68,7 @@ const SignIn = () => {
               type="text"
               placeholder="Username"
             />
+            <br />
             <input
               className="signInPasswordField"
               name="password"
@@ -80,15 +87,10 @@ const SignIn = () => {
                 }}
               />{" "}
             </div>
-            <button className="btn btn-lg btn-primary" onClick={handleSubmit}>
+            <button className="loginBtn btn btn-lg btn-primary" onClick={handleSubmit}>
               Log In
             </button>
           </div>
-          {error && (
-            <div className="text-danger mt-3">
-              User credentials not recognized.
-            </div>
-          )}
         </form>
       </div>
     </div>

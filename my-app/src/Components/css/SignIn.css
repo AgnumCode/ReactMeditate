@@ -1,39 +1,62 @@
 .signInContainer {
-    text-align: center;
-    display: flex;
-    flex-direction: unset;
-    justify-content: space-around;
+  text-align: center;
+
+}
+
+.loginBtn {
+  margin: 1rem;
+}
+
+/* :TODO: */
+.signInForm {
+  justify-content: center;
+  text-align: center;
+}
+
+
+.formBorder {
+  border: 1px groove grey;
+  padding: 1.5rem;
+  -webkit-box-shadow: 0px 0px 33px 1px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 0px 33px 1px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 0px 33px 1px rgba(0, 0, 0, 0.75);
+
+}
+
+.formHeader {
+  font-size: 1.5rem;
+  padding: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px groove white;
+  margin-bottom: 1rem;
+
+}
+
+.formAvatar {
+
+}
+
+.signInUsernameField {
+  margin: 2rem;
+  text-align: center;
+}
+
+
+.signInPasswordField {
+  margin: 1rem;
+  text-align: center;
   
-  }
-  /* :TODO: */
-  .signInForm {
-    background: grey;
-    border-style: solid;
-    border-width: 1px;
-    -webkit-box-shadow: 0px 0px 33px 1px rgba(0, 0, 0, 0.75);
-    -moz-box-shadow: 0px 0px 33px 1px rgba(0, 0, 0, 0.75);
-    box-shadow: 0px 0px 33px 1px rgba(0, 0, 0, 0.75);
-  }
-  
+}
 
+.showPasswordCheckbox {
+  padding: 1rem;
+  color: whitesmoke;
+  margin: 1rem;
 
-  .signInPasswordField {
+}
 
-    margin: 20px;
-    text-align: center;
-
-  }
-
-  .signInUsernameField {
-
-    margin: 20px;
-    text-align: center;
-    
-  }
-
-  .showPasswordCheckbox {
-
-    margin: 15px;
-    color: whitesmoke;
-    padding: 5px;
-  }
+.error {
+  padding: 1rem;
+  font-size: 1rem;
+  color: red;
+}

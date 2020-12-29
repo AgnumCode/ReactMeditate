@@ -18,8 +18,11 @@ div:hover { cursor: default }
 
 
 html {
+  height: 100vh; 
   background-color: #555;
   scroll-behavior: smooth;
+  height: calc(var(--vh, 1vh) * 100);
+
 }
 
 

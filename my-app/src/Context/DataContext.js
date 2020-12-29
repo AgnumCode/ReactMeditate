@@ -5,10 +5,11 @@ export const DataContext = createContext(undefined);
 export const DataProvider = ({ children }) => {
   const [user, setUser] = useState(
     {
-      isLoggedIn: false,
+      isLoggedIn: true,
       username: "admin",
       password: "admin",
       userID: 1928873,
+      admin: false,
       sessions: [
         {
           id: 1,
@@ -17,17 +18,35 @@ export const DataProvider = ({ children }) => {
           completed: "No",
         },
         {
-          id: 5,
+          id: 53,
           meditationTime: "01:00:00",
           dateMeditated: "11/3/2020",
           completed: "Yes",
         },
         {
-          id: 2,
+          id: 2222,
           meditationTime: "00:15:00",
           dateMeditated: "11/3/2020",
           completed: "No",
-        }
+        },
+        {
+          id: 254343,
+          meditationTime: "00:15:00",
+          dateMeditated: "11/3/2020",
+          completed: "No",
+        },
+        {
+          id: 41241242,
+          meditationTime: "00:45:00",
+          dateMeditated: "11/13/2019",
+          completed: "No",
+        },
+        {
+          id: 21223124,
+          meditationTime: "00:55:00",
+          dateMeditated: "1/26/2019",
+          completed: "No",
+        },
       ],
     }
   );

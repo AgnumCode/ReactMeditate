@@ -1,15 +1,10 @@
 import "./css/Sessions.css";
 import "../bootstrap.min.css";
-import React, {
-  useRef,
-  useContext,
-  useState,
-  useEffect,
-} from "react";
+import React, { useRef, useContext, useState, useEffect } from "react";
 import { DataContext } from "../Context/DataContext.js";
 
 const Sessions = () => {
-  const sessionContainerScrollIntoRef = useRef(undefined);
+  const sessionContainerScrollIntoRef = useRef(null);
   const [user, setUser] = useContext(DataContext);
   const [session, setSession] = useState([user.session]);
   const [sessionLength, setSessionLength] = useState(session.length);
@@ -18,7 +13,7 @@ const Sessions = () => {
   );
 
   useEffect(() => {
-      if (sessionContainerScrollIntoRef !== null) {
+    if (sessionContainerScrollIntoRef) {
       sessionContainerScrollIntoRef.current.scrollIntoView();
     }
   }, [sessionContainerScrollIntoRef]);
@@ -42,47 +37,51 @@ const Sessions = () => {
   };
 
   return (
-    <div ref={sessionContainerScrollIntoRef} className={sessionContainerStyle}>
-      {user.isLoggedIn ? (
-        <div>
-          <div
-            className={
-              user.sessions.length === 0
-                ? "showEmptySessionText"
-                : "hideEmptySessionText"
-            }
-          >
-            No sessions recorded!
+    <div ref={sessionContainerScrollIntoRef}>
+      <div className={sessionContainerStyle}>
+        {user.isLoggedIn ? (
+          <div>
+            <div
+              className={
+                user.sessions.length === 0
+                  ? "showEmptySessionText"
+                  : "hideEmptySessionText"
+              }
+            >
+              No sessions recorded!
+            </div>
+            {user.sessions.map((sessions) => {
+              return (
+                <div key={sessions.id} className="sessionItem">
+                  <button
+                    onClick={() => {
+                      deleteSessionItem(sessions.id);
+                    }}
+                    type="button"
+                    className="ml-2 mb-1 close"
+                    aria-label="Close"
+                  >
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                  <div className="toast-header">
+                    <strong className="mr-auto">
+                      Session Details - #{sessions.id}
+                    </strong>
+                    <small>{sessions.dateMeditated}</small>
+                  </div>
+                  <div className="toast-body">
+                    Session duration - {sessions.meditationTime}
+                    {/* <br />
+                  Completed Session - {sessions.completed} */}
+                  </div>
+                </div>
+              );
+            })}
           </div>
-          {user.sessions.map((sessions) => {
-            return (
-              <div key={sessions.id} className="sessionItem">
-                <button
-                  onClick={() => {
-                    deleteSessionItem(sessions.id);
-                  }}
-                  type="button"
-                  className="ml-2 mb-1 close"
-                  aria-label="Close"
-                >
-                  <span aria-hidden="true">&times;</span>
-                </button>
-                <div className="toast-header">
-                  <strong className="mr-auto">Session Details</strong>
-                  <small>{sessions.dateMeditated}</small>
-                </div>
-                <div className="toast-body">
-                  Session duration - {sessions.meditationTime}
-                  <br />
-                  Completed Session - {sessions.completed}
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      ) : (
-        <div className="showEmptySessionText">Sign in to see sessions.</div>
-      )}
+        ) : (
+          <div className="showEmptySessionText">Sign in to see sessions.</div>
+        )}
+      </div>
     </div>
   );
 };

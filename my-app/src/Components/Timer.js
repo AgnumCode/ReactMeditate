@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
 import { DataContext } from "../Context/DataContext.js";
+import { useHistory } from "react-router";
 import "./css/Timer.css";
 
 const Timer = () => {
@@ -11,9 +12,9 @@ const Timer = () => {
   const [timerFormat, setTimerFormat] = useState(
     new Date(currentTime * 1000).toISOString().substr(11, 8)
   );
+  const history = useHistory();
 
   useEffect(() => {
-
     if (timerRunning) {
       const id = setInterval(
         () => {
@@ -37,25 +38,35 @@ const Timer = () => {
   };
 
   const saveSession = (timeInSeconds) => {
-    setTimerRunning(false);
-    setCurrentTime(0);
-    setTimerFormat(null);
-    const date = new Date();
-    setUser({ 
-      ...user,
-      sessions: [{
-        id: new Date().getUTCMilliseconds(),
-        meditationTime: new Date(timeInSeconds * 1000 - 1)
-          .toISOString()
-          .substr(11, 8),
-        dateMeditated:
-          date.getUTCMonth() +
-          "/" +
-          date.getUTCDate() +
-          "/" +
-          date.getFullYear(),
-      }, ...user.sessions]
-    });
+    if (user.isLoggedIn) {
+      setTimerRunning(false);
+      setCurrentTime(0);
+      setTimerFormat(null);
+      const date = new Date();
+      setUser({
+        ...user,
+        sessions: [
+          {
+            id: new Date().getUTCMilliseconds(),
+            meditationTime: new Date(timeInSeconds * 1000 - 1)
+              .toISOString()
+              .substr(11, 8),
+            dateMeditated:
+              date.getUTCMonth() +
+              "/" +
+              date.getUTCDate() +
+              "/" +
+              date.getFullYear(),
+          },
+          ...user.sessions,
+        ],
+      });
+      history.push("/Sessions");
+    } else {
+      setTimerRunning(false);
+      setCurrentTime(0);
+      setTimerFormat(null);
+    }
   };
 
   return (
