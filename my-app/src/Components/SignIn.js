@@ -3,7 +3,7 @@ import { DataContext } from "../Context/DataContext.js";
 import { useHistory } from "react-router";
 import "./css/SignIn.css";
 
-const SignIn = ({ props }) => {
+const SignIn = () => {
   const initialFormData = Object.freeze({
     username: "",
     password: "",

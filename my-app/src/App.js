@@ -3,6 +3,7 @@ import React from "react";
 import { DataProvider } from "./Context/DataContext.js";
 import Navigation from "./Components/Navigation.js";
 import Sessions from "./Components/Sessions.js";
+import CreateAccount from "./Components/CreateAccount.js"
 import Home from "./Components/Home.js";
 import SignIn from "./Components/SignIn.js";
 import Timer from "./Components/Timer.js";
@@ -47,7 +48,14 @@ const App = () => {
               <Route exact path="/SignIn/CreateAccount">
                 <Row>
                   <Col>
-                    <createAccount />
+                    <CreateAccount />
+                  </Col>
+                </Row>
+              </Route>
+              <Route exact path="/Countdown">
+                <Row>
+                  <Col>
+                  
                   </Col>
                 </Row>
               </Route>

@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from "react";
-import { SessionContext } from "../Context/SessionContext.js";
 import "../App.css";
 
 const CreateAccount = () => {

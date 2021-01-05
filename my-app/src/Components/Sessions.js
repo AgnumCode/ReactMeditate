@@ -7,10 +7,10 @@ const Sessions = () => {
   const sessionContainerScrollIntoRef = useRef(null);
   const [user, setUser] = useContext(DataContext);
   const [session, setSession] = useState([user.session]);
-  const [sessionLength, setSessionLength] = useState(session.length);
   const [sessionContainerStyle, setSessionContainerStyle] = useState(
     "sessionContainer"
   );
+  const [sessionItemStyle, setSessionItemStyle] = useState("sessionItem");
 
   useEffect(() => {
     if (sessionContainerScrollIntoRef) {
@@ -19,13 +19,10 @@ const Sessions = () => {
   }, [sessionContainerScrollIntoRef]);
 
   useEffect(() => {
-    //if length of sessions will approach value where a scrollbar is unnecessary, change style
-    sessionLength - 1 <= 1
+    session.length < 1
       ? setSessionContainerStyle("sessionContainerEmpty")
       : setSessionContainerStyle("sessionContainer");
-
-    setSessionLength(session.length);
-  }, [sessionLength, session.length]);
+  }, [session.length]);
 
   //delete an item from the session list
   const deleteSessionItem = (key) => {
@@ -52,7 +49,7 @@ const Sessions = () => {
             </div>
             {user.sessions.map((sessions) => {
               return (
-                <div key={sessions.id} className="sessionItem">
+                <div key={sessions.id} className={sessionItemStyle}>
                   <button
                     onClick={() => {
                       deleteSessionItem(sessions.id);
@@ -65,14 +62,26 @@ const Sessions = () => {
                   </button>
                   <div className="toast-header">
                     <strong className="mr-auto">
-                      Session Details - #{sessions.id}
+                      Session Details - #{String(sessions.id).slice(0,5)}
                     </strong>
                     <small>{sessions.dateMeditated}</small>
                   </div>
                   <div className="toast-body">
                     Session duration - {sessions.meditationTime}
-                    {/* <br />
-                  Completed Session - {sessions.completed} */}
+                    {sessions.clock_mode === "Countdown" && (
+                      <>
+                        <br />
+                        {"Completed session - " + sessions.completed}
+                        {sessions.completed === "No" && (
+                          <>
+                            <br />
+                            {"Time left - " + sessions.timeLeft}
+                          </>
+                        )}
+                      </>
+                    )}
+                    <br />
+                    Clock - {sessions.clock_mode}
                   </div>
                 </div>
               );

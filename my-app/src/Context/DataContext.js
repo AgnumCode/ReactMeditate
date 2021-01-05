@@ -13,39 +13,51 @@ export const DataProvider = ({ children }) => {
       sessions: [
         {
           id: 1,
+          clock_mode: "Timer",
           meditationTime: "01:15:00",
           dateMeditated: "11/2/2020",
-          completed: "No",
+          completed: "N/A",
+          timeLeft: 0
         },
         {
           id: 53,
+          clock_mode: "Countdown",
           meditationTime: "01:00:00",
           dateMeditated: "11/3/2020",
           completed: "Yes",
+          timeLeft: 0
         },
         {
           id: 2222,
+          clock_mode: "Timer",
           meditationTime: "00:15:00",
           dateMeditated: "11/3/2020",
-          completed: "No",
+          completed: "N/A",
+          timeLeft: 0
         },
         {
           id: 254343,
+          clock_mode: "Timer",
           meditationTime: "00:15:00",
           dateMeditated: "11/3/2020",
-          completed: "No",
+          completed: "N/A",
+          timeLeft: 0
         },
         {
           id: 41241242,
+          clock_mode: "Countdown",
           meditationTime: "00:45:00",
           dateMeditated: "11/13/2019",
           completed: "No",
+          timeLeft: 250
         },
         {
           id: 21223124,
+          clock_mode: "Countdown",
           meditationTime: "00:55:00",
           dateMeditated: "1/26/2019",
           completed: "No",
+          timeLeft: 600
         },
       ],
     }

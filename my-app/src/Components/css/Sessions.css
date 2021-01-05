@@ -42,6 +42,10 @@
   box-shadow: 11px 4px 15px -3px rgba(0, 0, 0, 0.75);
 }
 
+.sessionItemNew {
+  border-color: greenyellow;
+}
+
 .toast-header {
   border-bottom: 1px solid #555 !important;
 }
