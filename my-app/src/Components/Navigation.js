@@ -24,7 +24,7 @@ const Navigation = () => {
       }
       prevScrollpos = currentScrollPos;
     };
-  }, [window.pageYOffset]);
+  }, []);
 
   return (
     <div id="nav" className="navigationMenu">

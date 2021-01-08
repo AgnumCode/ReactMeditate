@@ -43,6 +43,10 @@
 }
 
 .sessionItemNew {
+  border-color: lightgreen;
+}
+
+.sessionItemNew:hover {
   border-color: greenyellow;
 }
 

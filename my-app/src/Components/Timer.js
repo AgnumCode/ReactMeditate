@@ -1,64 +1,129 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext, useCallback } from "react";
 import { DataContext } from "../Context/DataContext.js";
 import { useHistory } from "react-router";
 import { v4 as uuidv4, v4 } from "uuid";
 import "./css/Timer.css";
 
+const clockModes = Object.freeze({
+  timer: true,
+  countDown: false,
+});
+
+const initialTimers = {
+  defaultTimer: 0,
+  defaultCountdown: 600,
+};
+
+const initialState = {
+  //Countdown set to 600 seconds
+  defaultCountdown: 2,
+  defaultTimer: 0,
+  defaultAbsoluteTimer: 0,
+  //Set starting clock mode to timer
+  clockMode: clockModes.timer,
+  //Timer initially not running
+  timerRunning: false,
+  notificationInit: "notificationHide",
+  notificationInitMessage: "Welcome.",
+  timerNewFormat: new Date(initialTimers.defaultTimer * 1000)
+    .toISOString()
+    .substr(11, 8),
+  countDownNewFormat: new Date(initialTimers.defaultCountdown * 1000)
+    .toISOString()
+    .substr(11, 8),
+  defaultFormat: "00:00:00",
+};
+
 const Timer = () => {
-  const defaultCountDownTime = 10;
-  // eslint-disable-next-line
-  const [countDownTime, setCountDownTime] = useState(defaultCountDownTime);
-  const [clockMode, setClockMode] = useState(true);
-  const [user, setUser] = useContext(DataContext);
-  const [timerRunning, setTimerRunning] = useState(false);
-  const [currentTime, setCurrentTime] = useState(0);
-  const [timerFormat, setTimerFormat] = useState(
-    new Date(currentTime * 1000).toISOString().substr(11, 8)
+  const [timerRunning, setTimerRunning] = useState(initialState.timerRunning);
+  const [clockMode, setClockMode] = useState(initialState.clockMode);
+  const [currentTime, setCurrentTime] = useState(
+    clockMode ? initialTimers.defaultTimer : initialTimers.defaultCountdown
   );
+  const [absoluteTime, setAbsoluteTime] = useState(
+    initialState.defaultAbsoluteTimer
+  );
+  const [user, setUser] = useContext(DataContext);
   const [modeNotification, setModeNotification] = useState(
-    "modeNotificationHide"
+    initialState.notificationInit
+  );
+  const [notificationText, setNotificationText] = useState(
+    initialState.notificationInitMessage
   );
   const history = useHistory();
+
   const timeFormatter = (time) => {
     return new Date(time * 1000).toISOString().substr(11, 8);
   };
 
+  const notificationMessage = useCallback(() => {
+    return notificationText;
+  }, [notificationText]);
+
+  //Clock mode switch notification
   useEffect(() => {
-    setModeNotification("modeNotification");
+    setModeNotification("notificationShow");
     const id = setTimeout(() => {
-      setModeNotification("modeNotificationHide");
+      setModeNotification("notificationHide");
     }, 2000);
     return () => clearTimeout(id);
-  }, [clockMode]);
+  }, [clockMode, notificationText]);
 
   useEffect(() => {
-    if (timerRunning && clockMode === true) {
+    if (timerRunning && clockMode === clockModes.timer) {
       const id = setInterval(() => {
         setCurrentTime((currentTime) => currentTime + 1);
-        setTimerFormat(timeFormatter(currentTime));
+        setAbsoluteTime((currentTime) => currentTime + 1);
       }, 500);
       return () => {
         clearInterval(id);
       };
-    } else if (timerRunning && clockMode === false) {
+      //if countdown timer
+    } else if (timerRunning && clockMode === clockModes.countDown) {
       const id = setInterval(() => {
-        setCurrentTime((currentTime) => currentTime - 1);
-        setTimerFormat(timeFormatter(currentTime));
+        if (currentTime - 1 === -1) {
+          setTimerRunning(false);
+          setNotificationText("Countdown has ended.");
+        } else {
+          setCurrentTime((currentTime) => currentTime - 1);
+          setAbsoluteTime((currentTime) => currentTime + 1);
+        }
       }, 500);
       return () => {
         clearInterval(id);
       };
     }
-  }, [timerRunning, currentTime, clockMode, countDownTime]);
+  }, [timerRunning, currentTime, clockMode]);
 
-  const resetTimer = () => {
-    //TODO
-    // setCurrentTime(0);
-    // setTimerRunning(false);
-    // setTimerFormat("00:00:00");
+  const resetTimer = (mode) => {
+    console.log("resetTimer: " + mode);
+    switch (mode) {
+      case "COUNTDOWN":
+        setClockMode(false);
+        setNotificationText("Countdown is now set.");
+        setTimerRunning(initialState.timerRunning);
+        setCurrentTime(initialTimers.defaultCountdown);
+        break;
+      case "TIMER":
+        setClockMode(true);
+        setNotificationText("Timer is now set.");
+        setTimerRunning(initialState.timerRunning);
+        setCurrentTime(initialTimers.defaultTimer);
+        break;
+      case "RESET":
+        setCurrentTime(
+          clockMode ? initialTimers.defaultTimer : initialTimers.defaultCountdown
+        );
+        setNotificationText("Clock is reset.");
+        setTimerRunning(false);
+        setAbsoluteTime(initialState.defaultAbsoluteTimer);
+        break;
+      default:
+        break;
+    }
   };
 
-  const saveSession = (timeInSeconds) => {
+  const saveSession = () => {
     if (user.isLoggedIn) {
       const date = new Date();
       setUser({
@@ -67,11 +132,9 @@ const Timer = () => {
           {
             id: uuidv4(),
             clock_mode: clockMode ? "Timer" : "Countdown",
-            meditationTime: currentTime, //clockMode
-            //   ? timeFormatter(timeInSeconds)
-            //   : timeFormatter(defaultCountDownTime),
-            completed: currentTime === 0 ? "Yes" : "No",
-            timeLeft: currentTime, //timeFormatter(currentTime),
+            meditationTime: timeFormatter(absoluteTime),
+            completed: clockMode ? "N/A" : currentTime === 0 ? "Yes" : "No",
+            timeLeft: clockMode ? "N/A" : timeFormatter(currentTime),
             dateMeditated:
               date.getUTCMonth() +
               "/" +
@@ -82,17 +145,18 @@ const Timer = () => {
           ...user.sessions,
         ],
       });
+      resetTimer("RESET");
+      setNotificationText("Session was saved.");
       history.push("/Sessions");
-      resetTimer();
     }
   };
 
   const switchClockType = () => {
     //TODO
     if (clockMode) {
-      setClockMode(false);
+      resetTimer("COUNTDOWN");
     } else {
-      setClockMode(true);
+      resetTimer("TIMER");
     }
   };
 
@@ -100,9 +164,7 @@ const Timer = () => {
     <div className="timerContainer">
       <div className="timerContainerBackground">
         <div id="circle">
-          <div className="timerText">
-            {timerFormat ? timerFormat : "00:00:00"}
-          </div>
+          <div className="timerText">{timeFormatter(currentTime)}</div>
         </div>
         <div className="countDownTimer">
           <br />
@@ -115,7 +177,7 @@ const Timer = () => {
               defaultChecked={clockMode}
             />
             <label className="custom-control-label" htmlFor="clockTypeSwitch">
-              {clockMode ? "Timer set" : "Countdown set"}
+              {clockMode ? "Timer" : "Countdown"}
             </label>
           </div>
         </div>
@@ -128,24 +190,21 @@ const Timer = () => {
           </button>
           <button
             className="timerBtn disabledBtn btn btn-primary"
-            disabled={currentTime === 0}
-            //TODO
-            onClick={() => resetTimer(clockMode ? 0 : defaultCountDownTime)}
+            disabled={false}
+            onClick={() => resetTimer("RESET")}
           >
             Reset Clock
           </button>
           <button
             className="timerBtn disabledBtn btn btn-warning"
-            disabled={currentTime === 0 || currentTime === countDownTime}
-            onClick={() => saveSession(currentTime)}
+            disabled={false}
+            onClick={() => saveSession()}
           >
             Save Session
           </button>
         </div>
       </div>
-      <div className={modeNotification}>
-        Mode set is {clockMode ? "timer" : "countdown "}
-      </div>
+      <div className={modeNotification}>{notificationMessage()}</div>
     </div>
   );
 };

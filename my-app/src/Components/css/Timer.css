@@ -22,7 +22,7 @@
   justify-content: center;
 }
 
-.modeNotification {
+.notificationShow {
   background-color: #2a9fd6;
   text-align: center;
   color: white;
@@ -31,7 +31,7 @@
   transition: font-size 0.5s;
 }
 
-.modeNotificationHide {
+.notificationHide {
   background-color: #2a9fd6;
   color: white;
   font-size: 0px;
