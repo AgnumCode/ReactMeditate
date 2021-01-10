@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext, useCallback } from "react";
 import { DataContext } from "../Context/DataContext.js";
+import { NotificationContext } from "../Context/NotificationContext.js";
 import { useHistory } from "react-router";
 import { v4 as uuidv4, v4 } from "uuid";
 import "./css/Timer.css";
@@ -9,22 +10,19 @@ const clockModes = Object.freeze({
   countDown: false,
 });
 
-const initialTimers = {
+const initialTimers = Object.freeze({
   defaultTimer: 0,
   defaultCountdown: 600,
-};
+});
 
-const initialState = {
-  //Countdown set to 600 seconds
-  defaultCountdown: 2,
+const initialState = Object.freeze({
+  defaultCountdown: 100,
   defaultTimer: 0,
   defaultAbsoluteTimer: 0,
   //Set starting clock mode to timer
   clockMode: clockModes.timer,
   //Timer initially not running
   timerRunning: false,
-  notificationInit: "notificationHide",
-  notificationInitMessage: "Welcome.",
   timerNewFormat: new Date(initialTimers.defaultTimer * 1000)
     .toISOString()
     .substr(11, 8),
@@ -32,9 +30,14 @@ const initialState = {
     .toISOString()
     .substr(11, 8),
   defaultFormat: "00:00:00",
-};
+});
 
 const Timer = () => {
+  const { _notificationText,
+          _setNotificationText, 
+          _modeNotification,
+          _setModeNotification } = useContext(NotificationContext);
+  const [_user, _setUser] = useContext(DataContext);
   const [timerRunning, setTimerRunning] = useState(initialState.timerRunning);
   const [clockMode, setClockMode] = useState(initialState.clockMode);
   const [currentTime, setCurrentTime] = useState(
@@ -43,13 +46,7 @@ const Timer = () => {
   const [absoluteTime, setAbsoluteTime] = useState(
     initialState.defaultAbsoluteTimer
   );
-  const [user, setUser] = useContext(DataContext);
-  const [modeNotification, setModeNotification] = useState(
-    initialState.notificationInit
-  );
-  const [notificationText, setNotificationText] = useState(
-    initialState.notificationInitMessage
-  );
+
   const history = useHistory();
 
   const timeFormatter = (time) => {
@@ -57,17 +54,17 @@ const Timer = () => {
   };
 
   const notificationMessage = useCallback(() => {
-    return notificationText;
-  }, [notificationText]);
+    return _notificationText;
+  }, [_notificationText]);
 
   //Clock mode switch notification
   useEffect(() => {
-    setModeNotification("notificationShow");
+    _setModeNotification("notificationShow");
     const id = setTimeout(() => {
-      setModeNotification("notificationHide");
+      _setModeNotification("notificationHide");
     }, 2000);
     return () => clearTimeout(id);
-  }, [clockMode, notificationText]);
+  }, [clockMode, _notificationText, _setModeNotification]);
 
   useEffect(() => {
     if (timerRunning && clockMode === clockModes.timer) {
@@ -83,7 +80,7 @@ const Timer = () => {
       const id = setInterval(() => {
         if (currentTime - 1 === -1) {
           setTimerRunning(false);
-          setNotificationText("Countdown has ended.");
+          _setNotificationText("Countdown has ended.");
         } else {
           setCurrentTime((currentTime) => currentTime - 1);
           setAbsoluteTime((currentTime) => currentTime + 1);
@@ -93,20 +90,20 @@ const Timer = () => {
         clearInterval(id);
       };
     }
-  }, [timerRunning, currentTime, clockMode]);
+  }, [timerRunning, currentTime, clockMode,  _setNotificationText]);
 
   const resetTimer = (mode) => {
     console.log("resetTimer: " + mode);
     switch (mode) {
       case "COUNTDOWN":
         setClockMode(false);
-        setNotificationText("Countdown is now set.");
+        _setNotificationText("Countdown is now set.");
         setTimerRunning(initialState.timerRunning);
         setCurrentTime(initialTimers.defaultCountdown);
         break;
       case "TIMER":
         setClockMode(true);
-        setNotificationText("Timer is now set.");
+        _setNotificationText("Timer is now set.");
         setTimerRunning(initialState.timerRunning);
         setCurrentTime(initialTimers.defaultTimer);
         break;
@@ -114,7 +111,7 @@ const Timer = () => {
         setCurrentTime(
           clockMode ? initialTimers.defaultTimer : initialTimers.defaultCountdown
         );
-        setNotificationText("Clock is reset.");
+        _setNotificationText("Clock is reset.");
         setTimerRunning(false);
         setAbsoluteTime(initialState.defaultAbsoluteTimer);
         break;
@@ -124,10 +121,10 @@ const Timer = () => {
   };
 
   const saveSession = () => {
-    if (user.isLoggedIn) {
+    if (_user.isLoggedIn) {
       const date = new Date();
-      setUser({
-        ...user,
+      _setUser({
+        ..._user,
         sessions: [
           {
             id: uuidv4(),
@@ -142,16 +139,16 @@ const Timer = () => {
               "/" +
               date.getFullYear(),
           },
-          ...user.sessions,
+          ..._user.sessions,
         ],
       });
       resetTimer("RESET");
-      setNotificationText("Session was saved.");
+      _setNotificationText("Session was saved.");
       history.push("/Sessions");
     }
   };
 
-  const switchClockType = () => {
+  const handleClockSwitch = () => {
     //TODO
     if (clockMode) {
       resetTimer("COUNTDOWN");
@@ -171,7 +168,7 @@ const Timer = () => {
           <div className="custom-control custom-switch">
             <input
               type="checkbox"
-              onClick={() => switchClockType()}
+              onClick={() => handleClockSwitch()}
               className="custom-control-input"
               id="clockTypeSwitch"
               defaultChecked={clockMode}
@@ -204,7 +201,7 @@ const Timer = () => {
           </button>
         </div>
       </div>
-      <div className={modeNotification}>{notificationMessage()}</div>
+      <div className={_modeNotification}>{notificationMessage()}</div>
     </div>
   );
 };

@@ -1,24 +1,21 @@
 import "./App.css";
 import React from "react";
 import { DataProvider } from "./Context/DataContext.js";
+import { NotificationProvider } from "./Context/NotificationContext.js";
+import { Container, Row, Col } from "react-bootstrap";
+import { BrowserRouter as Router, Switch, Route, Redirect } from "react-router-dom";
 import Navigation from "./Components/Navigation.js";
 import Sessions from "./Components/Sessions.js";
 import CreateAccount from "./Components/CreateAccount.js"
 import Home from "./Components/Home.js";
 import SignIn from "./Components/SignIn.js";
 import Timer from "./Components/Timer.js";
-import { Container, Row, Col } from "react-bootstrap";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from "react-router-dom";
 
 const App = () => {
   return (
     <>
       <DataProvider>
+        <NotificationProvider>
         <Router>
           <Navigation />
           <Container fluid>
@@ -71,6 +68,7 @@ const App = () => {
             </Switch>
           </Container>
         </Router>
+        </NotificationProvider>
       </DataProvider>
     </>
   );
