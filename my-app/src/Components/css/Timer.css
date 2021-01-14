@@ -22,23 +22,6 @@
   justify-content: center;
 }
 
-.notificationShow {
-  background-color: #2a9fd6;
-  text-align: center;
-  color: white;
-
-  font-size: 16px;
-  transition: font-size 0.5s;
-}
-
-.notificationHide {
-  background-color: #2a9fd6;
-  color: white;
-  font-size: 0px;
-  text-align: center;
-  transition: font-size 0.5s;
-}
-
 .disabledBtn:disabled {
   cursor: not-allowed;
 }

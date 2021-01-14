@@ -6,10 +6,12 @@ import { DataContext } from "../Context/DataContext.js";
 const Sessions = () => {
   const sessionContainerScrollIntoRef = useRef(null);
   const [user, setUser] = useContext(DataContext);
+  // eslint-disable-next-line
   const [session, setSession] = useState([user.session]);
   const [sessionContainerStyle, setSessionContainerStyle] = useState(
     "sessionContainer"
   );
+    // eslint-disable-next-line
   const [sessionItemStyle, setSessionItemStyle] = useState("sessionItem");
 
   useEffect(() => {

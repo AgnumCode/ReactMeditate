@@ -5,14 +5,14 @@ export const DataContext = createContext(undefined);
 export const DataProvider = ({ children }) => {
   const [user, setUser] = useState(
     {
-      isLoggedIn: true,
+      isLoggedIn: false,
       username: "admin",
       password: "admin",
       userID: 1928873,
       admin: false,
       sessions: [
         {
-          id: 1,
+          id: uuidv4(),
           clock_mode: "Timer",
           meditationTime: "01:15:00",
           dateMeditated: "11/2/2020",
@@ -20,7 +20,7 @@ export const DataProvider = ({ children }) => {
           timeLeft: 0
         },
         {
-          id: 53,
+          id: uuidv4(),
           clock_mode: "Countdown",
           meditationTime: "01:00:00",
           dateMeditated: "11/3/2020",
@@ -28,7 +28,7 @@ export const DataProvider = ({ children }) => {
           timeLeft: 0
         },
         {
-          id: 2222,
+          id: uuidv4(),
           clock_mode: "Timer",
           meditationTime: "00:15:00",
           dateMeditated: "11/3/2020",
@@ -44,7 +44,7 @@ export const DataProvider = ({ children }) => {
           timeLeft: 0
         },
         {
-          id: 41241242,
+          id: uuidv4(),
           clock_mode: "Countdown",
           meditationTime: "00:45:00",
           dateMeditated: "11/13/2019",
@@ -52,7 +52,7 @@ export const DataProvider = ({ children }) => {
           timeLeft: 250
         },
         {
-          id: 21223124,
+          id: uuidv4(),
           clock_mode: "Countdown",
           meditationTime: "00:55:00",
           dateMeditated: "1/26/2019",

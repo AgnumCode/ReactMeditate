@@ -38,7 +38,7 @@ export const NotificationProvider = ({ children }) => {
 
 /*
   each component given standardized css hide/show blocks and a way to update 
-  the message based on its change. CSS improvement: use sass to inherit css.
+  the message based on its change. 
 */
 
 //Callback required in each component

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useContext, useCallback } from "react";
 import { DataContext } from "../Context/DataContext.js";
 import { NotificationContext } from "../Context/NotificationContext.js";
 import { useHistory } from "react-router";
-import { v4 as uuidv4, v4 } from "uuid";
+import { v4 as uuidv4 } from "uuid";
 import "./css/Timer.css";
 
 const clockModes = Object.freeze({

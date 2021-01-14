@@ -1,7 +1,31 @@
 .homePageContainer {
-    font-size: 25px;
-    text-align: center;
-    padding: 50px;
-    height: max-content;
-  }
-  
+  font-size: 25px;
+  text-align: center;
+  padding: 1rem;
+}
+
+.homeShadow {
+  -webkit-box-shadow: 5px 5px 10px 0px #000000;
+  box-shadow: 5px 5px 10px 0px #000000;
+}
+
+.jumboInfo {
+  border-radius: 10px;
+  padding: 2rem !important;
+}
+
+.lightDarkBg {
+  background-color: rgba(100, 100, 100, 0.2);
+}
+
+.badge {
+  padding: 0.5rem !important;
+  -webkit-box-shadow: 5px 5px 10px -5px #000000;
+  box-shadow: 5px 5px 10px -5px #000000;
+}
+
+.leadText {
+    font-size: 1.5rem;
+    border-radius: 10px;
+    padding: 0.5rem !important;
+}
