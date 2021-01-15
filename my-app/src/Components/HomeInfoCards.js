@@ -46,7 +46,12 @@ const HomeInfoCards = () => {
           onClick={() => handleCollapse("collapseMeditate")}
           className="card-header bg-success"
         >
-           <span className="plus">What is meditation?</span>
+          <span className="plus">What is meditation?</span>
+          <i
+            className={
+              "fas fa-angle-" + (collapse.collapseMeditate ? "up" : "down")
+            }
+          />
         </div>
         <div
           className={
@@ -69,8 +74,10 @@ const HomeInfoCards = () => {
           onClick={() => handleCollapse("collapseHow")}
           className="card-header bg-primary"
         >
-            <span className="plus"> How can I start?</span>
-          
+          <span> How can I start?</span>{" "}
+          <i
+            className={"fas fa-angle-" + (collapse.collapseHow ? "up" : "down")}
+          />
         </div>
         <div
           className={
@@ -119,7 +126,12 @@ const HomeInfoCards = () => {
           onClick={() => handleCollapse("collapseBenefits")}
           className="card-header bg-info"
         >
-          <span className="plus"> What are the benefits?</span>
+          <span> What are the benefits?</span>{" "}
+          <i
+            className={
+              "fas fa-angle-" + (collapse.collapseBenefits ? "up" : "down")
+            }
+          />
         </div>
         <div
           className={
@@ -129,7 +141,8 @@ const HomeInfoCards = () => {
           <h4 className="card-title">Benefits</h4>
           <p className="card-text">
             Meditation has multiple benefits providing mental wellness and
-            control over negative emotions.
+            control over negative emotions provides self appreciation, stronger focus,
+            and patience. Best of all it costs nothing but time and discipline.
           </p>
         </div>
       </div>

@@ -1,16 +1,47 @@
 .customCollapse {
-    font-size: 0px;
-    opacity: 0.7;
-    transition: font-size 1s ease;
-
+  font-size: 0px;
+  transition: font-size 1s ease;
 }
 
 .card-body {
-    transition: font-size 1s ease;
+  transition: font-size 1s ease;
 }
 
-.plus {
-    font-size: 1.5rem;
-    display: flex;
-    justify-content: center;
+.fas.fa-angle-up,
+.fas.fa-angle-down {
+  font-size: 2rem;
+  float: right;
+  vertical-align: middle;
+}
+
+.badge:hover {
+    font-size: 27px;
+}
+
+.badge {
+    transition: font-size 0.5s;
+}
+
+@keyframes pulse {
+  0% {
+    transform: translateY(3px);
+  }
+  50% {
+    transform: translateY(-3px);
+
+  }
+  75% {
+    transform: translateY(3px);
+
+  }
+  100% {
+    transform: translateY(3px);
+
+  }
+}
+
+.fas.fa-angle-down,
+.fas.fa-angle-up {
+  animation: pulse 2s infinite ease;
+  animation-iteration-count: 10;
 }
