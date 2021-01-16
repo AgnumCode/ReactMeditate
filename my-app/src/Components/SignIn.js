@@ -2,7 +2,6 @@ import React, { useState, useContext, useRef, useEffect } from "react";
 import { DataContext } from "../Context/DataContext.js";
 import { useHistory } from "react-router";
 import CreateAccount from "./CreateAccount";
-import Modal from "react-modal";
 import "./css/SignIn.css";
 
 const SignIn = () => {

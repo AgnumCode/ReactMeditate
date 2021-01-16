@@ -5,7 +5,7 @@ export const DataContext = createContext(undefined);
 export const DataProvider = ({ children }) => {
   const [user, setUser] = useState(
     {
-      isLoggedIn: false,
+      isLoggedIn: true,
       username: "admin",
       password: "admin",
       userID: 1928873,
@@ -17,7 +17,7 @@ export const DataProvider = ({ children }) => {
           meditationTime: "01:15:00",
           dateMeditated: "11/2/2020",
           completed: "N/A",
-          timeLeft: 0
+          timeLeft: 0,
         },
         {
           id: uuidv4(),
@@ -25,7 +25,7 @@ export const DataProvider = ({ children }) => {
           meditationTime: "01:00:00",
           dateMeditated: "11/3/2020",
           completed: "Yes",
-          timeLeft: 0
+          timeLeft: 0,
         },
         {
           id: uuidv4(),
@@ -33,7 +33,7 @@ export const DataProvider = ({ children }) => {
           meditationTime: "00:15:00",
           dateMeditated: "11/3/2020",
           completed: "N/A",
-          timeLeft: 0
+          timeLeft: 0,
         },
         {
           id: 254343,
@@ -41,7 +41,7 @@ export const DataProvider = ({ children }) => {
           meditationTime: "00:15:00",
           dateMeditated: "11/3/2020",
           completed: "N/A",
-          timeLeft: 0
+          timeLeft: 0,
         },
         {
           id: uuidv4(),
@@ -49,7 +49,7 @@ export const DataProvider = ({ children }) => {
           meditationTime: "00:45:00",
           dateMeditated: "11/13/2019",
           completed: "No",
-          timeLeft: 250
+          timeLeft: 250,
         },
         {
           id: uuidv4(),
@@ -57,7 +57,7 @@ export const DataProvider = ({ children }) => {
           meditationTime: "00:55:00",
           dateMeditated: "1/26/2019",
           completed: "No",
-          timeLeft: 600
+          timeLeft: 600,
         },
       ],
     }

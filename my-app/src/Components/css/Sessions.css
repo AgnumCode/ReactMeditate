@@ -23,37 +23,3 @@
   padding-top: 10px;
 }
 
-.sessionItem:hover {
-  border-color: grey;
-}
-
-.sessionItem {
-  padding: 1vh;
-  margin-bottom: 5px;
-  margin-top: 5px;
-  border-color: #555;
-  border-style: solid;
-  background-color: #222;
-  border-radius: 10px;
-  color: white;
-  text-align: center;
-  -webkit-box-shadow: 11px 4px 15px -3px rgba(0, 0, 0, 0.75);
-  -moz-box-shadow: 11px 4px 15px -3px rgba(0, 0, 0, 0.75);
-  box-shadow: 11px 4px 15px -3px rgba(0, 0, 0, 0.75);
-}
-
-.sessionItemNew {
-  border-color: lightgreen;
-}
-
-.sessionItemNew:hover {
-  border-color: greenyellow;
-}
-
-.toast-header {
-  border-bottom: 1px solid #555 !important;
-}
-
-.sessionItem:last-child {
-  margin-bottom: 30px;
-}

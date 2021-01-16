@@ -1,6 +1,7 @@
 import React, { useRef, useEffect, useContext } from "react";
 import { DataContext } from "../Context/DataContext.js";
 import HomeInfoCards from "./HomeInfoCards.js"
+import {useSpring, animated} from 'react-spring'
 import "./css/Home.css";
 
 const initialState = Object.freeze({
@@ -11,6 +12,7 @@ const Home = () => {
   // eslint-disable-next-line 
   const [user, setUser] = useContext(DataContext);
   const homePageContainerScrollIntoRef = useRef(initialState.homePageContainerScrollIntoRef);
+  const homepageSpring = useSpring({opacity: 1, from: {opacity: 0}})
 
   useEffect(() => {
     if (homePageContainerScrollIntoRef !== null) {
@@ -21,7 +23,10 @@ const Home = () => {
   return (
     <div ref={homePageContainerScrollIntoRef} className="homePageContainer">
       {user.isLoggedIn ? (
-        `Hello, ${user.username}.`
+        <animated.div style={homepageSpring} className="jumbotron">Hello {user.username}.
+        <div>Welcome to React Meditate.</div>
+        </animated.div>
+        
       ) : (
         <>
           <div className="jumbotron homeShadow">
