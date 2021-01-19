@@ -11,6 +11,7 @@
 .signInForm {
   justify-content: center;
   text-align: center;
+  display: flex;
 }
 
 
@@ -29,10 +30,6 @@
   padding-bottom: 1rem;
   border-bottom: 1px groove white;
   margin-bottom: 1rem;
-
-}
-
-.formAvatar {
 
 }
 
@@ -59,4 +56,6 @@
   padding: 1rem;
   font-size: 1rem;
   color: red;
+  background-color: white;
+  border-radius: 10px;
 }

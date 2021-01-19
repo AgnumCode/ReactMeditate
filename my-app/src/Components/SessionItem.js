@@ -17,7 +17,8 @@ const SessionItem = ({ user, setUser, sessionItemStyle }) => {
   };
 
   const transitions = useTransition(user.sessions, (userArray) => userArray.id, {
-    from: { transform: "translateX(-5000px)" },
+    config: {mass : 30, velocity: 3, tension: 170, friction: 110, clamp: true},
+    from: { transform: "translateY(5000px)" },
     enter: { transform: "translateY(0px)" },
     leave: { transform: "translateY(-5000px)" },
   });

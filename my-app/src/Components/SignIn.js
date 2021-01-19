@@ -1,15 +1,17 @@
 import React, { useState, useContext, useRef, useEffect } from "react";
 import { DataContext } from "../Context/DataContext.js";
 import { useHistory } from "react-router";
+import { useSpring, animated } from 'react-spring';
 import CreateAccount from "./CreateAccount";
 import "./css/SignIn.css";
 
-const SignIn = () => {
-  const initialFormData = Object.freeze({
-    username: "",
-    password: "",
-  });
+const initialFormData = Object.freeze({
+  username: "",
+  password: "",
+});
 
+const SignIn = () => {
+  
   const signInContainerScrollIntoRef = useRef(null);
   const signInErrorRef = useRef(null);
   const [showPassword, setShowPassword] = useState(false);
@@ -22,6 +24,7 @@ const SignIn = () => {
 
   const toggleModal = () => {
     setModalOpen(!modalOpen);
+    setError(false);
   };
 
   useEffect(() => {
@@ -35,7 +38,6 @@ const SignIn = () => {
       ...formData,
       [e.target.name]: e.target.value.trim(),
     });
-
     setError(false);
   };
 

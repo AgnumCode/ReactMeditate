@@ -27,10 +27,8 @@ const Sessions = () => {
   }, [session.length]);
 
   useEffect(() => {
-
-    return () => {
-    }
-  }, [user])
+    return () => {};
+  }, [user]);
 
   const handleEmptyList = () => {
     return user.sessions.length === 0

@@ -1,13 +1,35 @@
 import React, { useState } from "react";
+import { DataContext } from "../Context/DataContext.js";
 import "./css/CreateAccount.css";
 
+const initialFormData = Object.freeze({
+  username: "",
+  password: "",
+  confirmPassword: ""
+});
+
 const CreateAccount = ({toggleModal}) => {
+
   const [showPassword, setShowPassword] = useState(false);
-  const [error, setError] = useState(false);
+  const [formData, updateFormData] = useState(initialFormData);
+  const [error, setError] = useState({
+    username: 0,
+    password: 0,
+    confirmPassword: 0
+  });
   const [confirmPassword, setConfirmPassword] = useState(false);
 
-  const handleChange = () => {};
+  const handleChange = (e) => {
+    updateFormData({
+      ...formData,
+      [e.target.name]: e.target.value.trim(),
+    });
 
+    if (formData.confirmPassword !== formData.password) {
+    }
+
+    setError(false);
+  };
   const handleSubmit = (e) => {
     e.preventDefault();
   };
@@ -24,6 +46,8 @@ const CreateAccount = ({toggleModal}) => {
           <div className="formBorder">
             <div className="formHeader">Create an account!</div>
             {error && <div className="error">Input error.</div>}
+            <label htmlFor="username">
+              Choose username.
             <input
               className="signInUsernameField"
               name="username"
@@ -31,7 +55,10 @@ const CreateAccount = ({toggleModal}) => {
               type="text"
               placeholder="Username"
             />
+            </label>
             <br />
+            <label htmlFor="password">
+              Choose password.
             <input
               className="signInPasswordField"
               name="password"
@@ -39,13 +66,18 @@ const CreateAccount = ({toggleModal}) => {
               placeholder="Password"
               onChange={handleChange}
             />
+            </label>
+            <br/>
+            <label htmlFor="confirmPassword">
+              Confirm password.
             <input
               className="signInPasswordField"
-              name="password"
+              name="confirmPassword"
               type={showPassword ? "text" : "password"}
               placeholder="Password"
               onChange={handleChange}
             />
+            </label>
             <br />
             <div className="showPasswordCheckbox">
               {" "}

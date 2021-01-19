@@ -1,7 +1,7 @@
 import React, { useRef, useEffect, useContext } from "react";
 import { DataContext } from "../Context/DataContext.js";
 import HomeInfoCards from "./HomeInfoCards.js"
-import {useSpring, animated} from 'react-spring'
+import { useSpring, animated } from 'react-spring'
 import "./css/Home.css";
 
 const initialState = Object.freeze({
@@ -28,6 +28,8 @@ const Home = () => {
         </animated.div>
         
       ) : (
+
+        
         <>
           <div className="jumbotron homeShadow">
             <h4>Welcome to React Meditate!</h4>
