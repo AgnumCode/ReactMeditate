@@ -59,7 +59,7 @@ const App = () => {
               <Route exact path="/Sessions">
                 <Row>
                   <Col>
-                    <Col xs={12} sm={12} md={12} lg={12}>
+                    <Col className="nomargins" xs={12} sm={12} md={12} lg={12}>
                       <Sessions />
                     </Col>
                   </Col>

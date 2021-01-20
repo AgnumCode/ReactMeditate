@@ -16,8 +16,6 @@
 
 
 .formBorder {
-  border: 1px groove grey;
-  padding: 1.5rem;
   -webkit-box-shadow: 0px 0px 33px 1px rgba(0, 0, 0, 0.75);
   -moz-box-shadow: 0px 0px 33px 1px rgba(0, 0, 0, 0.75);
   box-shadow: 0px 0px 33px 1px rgba(0, 0, 0, 0.75);

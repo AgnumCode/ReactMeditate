@@ -1,7 +1,19 @@
 .homePageContainer {
   font-size: 25px;
   text-align: center;
-  padding: 1rem;
+  display: flex;
+  justify-content: center;
+  flex-flow: column;
+
+}
+
+@keyframes slide {
+  from {
+    background-position: 0 0;
+  }
+  to {
+    background-position: -400px 0;
+  }
 }
 
 .homeShadow {
@@ -12,6 +24,12 @@
 .jumboInfo {
   border-radius: 10px;
   padding: 2rem !important;
+}
+
+.jumbotron {
+  animation: slide 30s linear infinite;
+  border-radius: 0px;
+  background-image: url("../../Static//images/footer_lodyas.png");
 }
 
 .lightDarkBg {
@@ -25,7 +43,7 @@
 }
 
 .leadText {
-    font-size: 1.5rem;
-    border-radius: 10px;
-    padding: 0.5rem !important;
+  font-size: 1.5rem;
+  border-radius: 10px;
+  padding: 0.5rem !important;
 }

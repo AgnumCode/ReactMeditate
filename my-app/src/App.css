@@ -13,7 +13,6 @@ div:hover { cursor: default }
   background-color: #2a9fd6;
   text-align: center;
   color: white;
-
   font-size: 16px;
   transition: font-size 0.5s;
 }
@@ -26,19 +25,26 @@ div:hover { cursor: default }
   transition: font-size 0.5s;
 }
 
+@keyframes slide {
+  from { background-position: 0 0; }
+  to { background-position: -400px 0; }
+}
 
 #root {
-  background-color: #555;
+  height: 100%;
+  animation: slide 20s linear infinite;
+  background-image: url("./Static//images/congruent_outline.png");
+}
+
+body {  height: 100%;
+  animation: slide 20s linear infinite;
+  background-image: url("./Static//images/congruent_outline.png");
 }
 
 
-
 html {
-  height: 100vh; 
-  background-color: #555;
   scroll-behavior: smooth;
-  height: calc(var(--vh, 1vh) * 100);
-
+  min-height: 100%;
 }
 
 

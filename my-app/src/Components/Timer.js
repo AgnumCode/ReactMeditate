@@ -123,6 +123,7 @@ const Timer = () => {
   const saveSession = () => {
     if (_user.isLoggedIn) {
       const date = new Date();
+      console.log("Saving session with current time: " + currentTime);
       _setUser({
         ..._user,
         sessions: [

@@ -37,22 +37,20 @@ const Sessions = () => {
   };
 
   return (
-    <div ref={sessionContainerScrollIntoRef}>
-      <div className={sessionContainerStyle}>
+    <div className={sessionContainerStyle} ref={sessionContainerScrollIntoRef}>
         {user.isLoggedIn ? (
-          <div>
+          <>
             <div className={handleEmptyList()}>No sessions recorded!</div>
             <SessionItem
               sessionItemStyle={sessionItemStyle}
               user={user}
               setUser={setUser}
             />
-          </div>
+          </>
         ) : (
           <div className="showEmptySessionText">Sign in to see sessions.</div>
         )}
       </div>
-    </div>
   );
 };
 

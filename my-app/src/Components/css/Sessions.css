@@ -1,25 +1,29 @@
 .hideEmptySessionText {
   opacity: 0;
   font-size: 0px;
-  display: flex;
-  justify-content: center;
 }
 
 .showEmptySessionText {
-  opacity: 1;
-  padding: 4rem;
-  justify-content: center;
-  font-size: 30px;
+  animation: slide 20s linear infinite;
+  background-image: url("../../Static/images/footer_lodyas.png");
+  font-size: 25px;
+  transition: font-size 3s ease;
   text-align: center;
 }
 
+@keyframes slide {
+  from { background-position: 0 0; }
+  to { background-position: -400px 0; }
+}
+
 .sessionContainer {
-  margin: 5px;
-  padding-top: 10px;
+  animation: slide 20s linear infinite;
+  background-image: url("../../Static//images/footer_lodyas.png");
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  -webkit-box-shadow: 1px 8px 15px 5px rgba(0, 0, 0, 0.79);
+  box-shadow: 1px 8px 15px 5px rgba(0, 0, 0, 0.79);
+  max-height: fit-content;
 }
-
-.sessionContainerEmpty {
-  margin: 5px;
-  padding-top: 10px;
-}
-
